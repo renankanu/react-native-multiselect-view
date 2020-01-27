@@ -25,7 +25,7 @@ export default class MultiSelectView extends Component {
 		props.data.forEach(
 			(item) => {
 				if (typeof (item) != 'string' && typeof (item) != 'number') {
-					newData.push({ ...item, value: item[valueKey], checked: false });
+					newData.push({ ...item, value: item[props.valueKey], checked: false });
 				}
 				else {
 					newData.push({ value: item, checked: false });
