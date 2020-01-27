@@ -15,19 +15,29 @@ export default class ListItem extends PureComponent {
 	}
 
 	render() {
-		const { text, activeContainerStyle, activeTextStyle, inactiveContainerStyle, inactiveTextStyle, checked, activeIcon, inactiveIcon } = this.props;
-		return (
+		const { text, activeView, desactiveView, activeContainerStyle, activeTextStyle, inactiveContainerStyle, inactiveTextStyle, checked, activeIcon, inactiveIcon } = this.props;
+		
+		if (true && activeView){
+			return (
 			<TouchableOpacity onPress={this.onTouch}>
-				{checked ? <View style={[styles.container, styles.activeContainer, activeContainerStyle]}>
+				{  checked ? activeView(this.props) :
+					desactiveView(this.props)}					
+			</TouchableOpacity> )
+		}else{
+			return (
+			<TouchableOpacity onPress={this.onTouch}>
+				{  checked ? <View style={[styles.container, styles.activeContainer, activeContainerStyle]}>
 					<Text numberOfLines={1} style={[styles.text, styles.activeText, activeTextStyle]}>{text}</Text>
 					 
 				</View> :
 					<View style={[styles.container, inactiveContainerStyle]}>
 						<Text numberOfLines={1} style={[styles.text, inactiveTextStyle]}>{text}</Text>
 						
-					</View>}
+					</View>}					
 			</TouchableOpacity> 
 		);
+		}
+		
 	}
 }
 
