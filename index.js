@@ -1,9 +1,9 @@
 /**
  * react-native-multiselect-view
- * Customizable list component for react native, it works on iOS and Android
- * https://github.com/bgoyal2222/react-native-multiselect-view
- * Email:bhaveshgoyal999@gmail.com
- * Profile:https://www.linkedin.com/in/bhavesh-goyal/
+ * Customizable list component with complex content for react native, it works on iOS and Android
+ * https://github.com/fukhaos/react-native-multiselect-view
+ * Email:fukhaos@gmail.com
+ * Profile:https://www.linkedin.com/in/fukhaos/
  */
 
 import React, { Component } from 'react';
@@ -53,14 +53,18 @@ export default class MultiSelectView extends Component {
 	}
 	render() {
 		const { data } = this.state;
-		const { activeIcon, inactiveIcon, inactiveContainerStyle, activeContainerStyle, activeTextStyle, inactiveTextStyle } = this.props;
+		const { activeView, desactiveView, activeIcon, inactiveIcon, inactiveContainerStyle, activeContainerStyle, activeTextStyle, inactiveTextStyle } = this.props;
 		return (
-			<View style={{ flexDirection: 'row', flexWrap: 'wrap', flex: 1, padding: 15 }}>
-				{data && data.map((item, index) => <ListItem
+			<View style={{ ...this.props.style, flexDirection: 'row', flexWrap: 'wrap', flex: 1}}>
+				{data && data.map((item, index) => 
+				<ListItem
 					key={index}
 					index={index}
+					item={item}
 					text={item.value}
 					checked={item.checked}
+					activeView={activeView}
+					desactiveView={desactiveView}
 					onTouch={this.onTouch}
 					activeContainerStyle={activeContainerStyle}
 					inactiveContainerStyle={inactiveContainerStyle}
@@ -70,6 +74,7 @@ export default class MultiSelectView extends Component {
 					inactiveIcon={inactiveIcon}
 				/>
 				)}
+
 			</View>
 		);
 	}
