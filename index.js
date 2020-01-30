@@ -58,7 +58,7 @@ export default class MultiSelectView extends Component {
 			<View style={{ ...this.props.style, flexDirection: 'row', flexWrap: 'wrap', flex: 1}}>
 				{data && data.map((item, index) => 
 				<ListItem
-					key={index}
+					key={item.value}
 					index={index}
 					item={item}
 					text={item.value}
