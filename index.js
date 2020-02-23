@@ -21,8 +21,16 @@ export default class MultiSelectView extends Component {
 	constructor(props) {
 		super(props);
 		this.onTouch = this.onTouch.bind(this);
+
+		this.state = {data: []}
+		
+		this.update(props.data);
+	}
+
+	update(data){
+
 		let newData = [];
-		props.data.forEach(
+		data.forEach(
 			(item) => {
 				if (typeof (item) != 'string' && typeof (item) != 'number') {
 					newData.push({ ...item, value: item[props.valueKey], checked: false });
@@ -32,10 +40,10 @@ export default class MultiSelectView extends Component {
 				}
 			}
 		)
-		this.state = {
-			data: newData,
-		}
+		this.state = {data: newData}
+		this.setState({data: newData})
 	}
+
 	
 	onTouch(status, index) {
 		const { data } = this.state;
@@ -58,7 +66,7 @@ export default class MultiSelectView extends Component {
 			<View style={{ ...this.props.style, flexDirection: 'row', flexWrap: 'wrap', flex: 1}}>
 				{data && data.map((item, index) => 
 				<ListItem
-					key={item.value}
+					key={index}
 					index={index}
 					item={item}
 					text={item.value}
