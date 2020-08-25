@@ -50,7 +50,7 @@ export default class MultiSelectView extends Component {
 		data[index].checked = status;
 		this.setState({ data });
 		if (this.props.onSelectionStatusChange) {
-			this.props.onSelectionStatusChange(status, index);
+			this.props.onSelectionStatusChange(status, index, data[index]);
 		}
 	}
 	selectedItems() {
